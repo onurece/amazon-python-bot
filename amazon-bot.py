@@ -1,9 +1,10 @@
 from selenium import webdriver
 from time import sleep
 
-class PS5Bot():
-    def __init__(self):
+class PS5Bot(url):
+    def __init__(self, url):
         self.driver = webdriver.Chrome()
+        self.url = url
 
     def login(self):
         self.driver.get('https://www.amazon.com')
@@ -11,7 +12,7 @@ class PS5Bot():
 
     def checkAndBuyPS5(self):
         while True:
-            self.driver.get('THE SHIT YOU WANT TO BUY')
+            self.driver.get(self.url)
             sleep(1)   
             try:
                 buyNow = self.driver.find_element_by_xpath('//*[@id="add-to-cart-button"]')
@@ -29,6 +30,6 @@ class PS5Bot():
                 print(e)
                 sleep(1.5)
 
-bot = PS5Bot()
+bot = PS5Bot('https://www.amazon.co.uk/PlayStation-9395003-5-Console/dp/B08H95Y452')
 bot.login()
 bot.checkAndBuyPS5()
